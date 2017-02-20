@@ -6,6 +6,8 @@ export class Article {
     public modifiedBy?: number,
     public createdAt?: string,
     public modifiedAt?: string,
+    public deletedAt?: string,
+    public deletedBy?: number,
     public content?: string,
     public tags?: string[]
   ) {}

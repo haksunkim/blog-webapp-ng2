@@ -27,4 +27,12 @@ export class RestDataSource {
     });
     return this.http.request(request).map(response => response.json());
   }
+
+  saveArticle(article: Article) : Observable<Article> {
+    return this.sendRequest(RequestMethod.Post, "articles", article, true);
+  }
+
+  updateArticle(article: Article) : Observable<Article> {
+    return this.sendRequest(RequestMethod.Put, `articles/${article.id}`, article, true);
+  }
 }

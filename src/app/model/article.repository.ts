@@ -17,7 +17,7 @@ export class ArticleRepository {
           fullTags.push(tag);
         }
       }
-      
+
       for (let tag of fullTags) {
         if (this.tags.indexOf(tag) == -1) {
           this.tags.push(tag);
@@ -36,5 +36,15 @@ export class ArticleRepository {
 
   getTags() : string[] {
     return this.tags;
+  }
+
+  svaeArticle(article: Article) {
+    if (article.id == null || article.id == 0) {
+      this.datasource.saveArticle(article).subscribe(a => this.articles.push(a));
+    } else {
+      this.datasource.updateArticle(article).subscribe(a => {
+        this.articles.splice(this.articles.findIndex(a => a.id == article.id), 1, article);
+      });
+    }
   }
 }
