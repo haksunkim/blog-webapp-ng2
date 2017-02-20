@@ -21,7 +21,7 @@
           <td>{{a.modifiedAt}}</td>
           <td>{{a.deletedAt}}</td>
           <td>
-            <button class="btn btn-secondary">Edit</button>
+            <button class="btn btn-secondary" [routerLink]="['/admin','articles',a.id,'edit']">Edit</button>
             <button class="btn btn-danger" *ngIf="a.deletedAt == null || a.deletedAt == ''" [routerLink]="['/admin','articles',a.id,'delete']">Delete</button>
           </td>
         </tr>

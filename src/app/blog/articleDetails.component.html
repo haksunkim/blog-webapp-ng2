@@ -4,7 +4,7 @@
       <div class="container">
         <h3>{{article.title | uppercase}}</h3>
         <p><small>posted on {{article.createdAt}} by {{article.createdBy}}</small></p>
-        <p>{{article.content}}</p>
+        <p [innerHtml]="article.content"></p>
       </div>
     </div>
   </div>

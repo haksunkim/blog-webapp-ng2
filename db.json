@@ -31,7 +31,7 @@
       "title": "json-server 2",
       "createdBy": 1,
       "createdAt": "18/02/2017 00:10:04",
-      "content": "content served by json-server 2",
+      "content": "<p>content served by json-server 2 testing</p>\n",
       "tags": [
         "test",
         "mock",
