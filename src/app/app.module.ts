@@ -1,5 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+
 import { ModelModule } from "./model/model.module";
 import { RouterModule } from "@angular/router";
 import { BlogModule } from "./blog/blog.module";
@@ -13,6 +15,7 @@ import { routing } from "./app.routing";
 @NgModule({
   imports:      [ BrowserModule, ModelModule, routing, BlogModule ],
   declarations: [ AppComponent, HeaderComponent, SidebarComponent, FooterComponent ],
+  providers:    [ {provide: LocationStrategy, useClass: HashLocationStrategy} ],
   bootstrap:    [ AppComponent, HeaderComponent, SidebarComponent, FooterComponent ]
 })
 export class AppModule { }
