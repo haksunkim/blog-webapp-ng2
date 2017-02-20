@@ -1,0 +1,9 @@
+{
+  "users": [
+    {"id":1, "username": "glarian", "password": "", "roles": ["admin"]}
+  ],
+  "articles": [
+    { "id": 1, "title": "json-server", "createdBy": 1, "createdAt": "17/02/2017 00:10:04", "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quam nunc, malesuada ut magna sit amet, commodo fermentum augue. Integer mattis pharetra tellus in maximus. Quisque at libero nec elit feugiat interdum vel et elit. Nullam dignissim tincidunt metus, ac accumsan nunc rhoncus sed. Donec elementum, sapien quis sollicitudin feugiat, ex magna venenatis felis, vitae faucibus est augue vitae dolor. Suspendisse porta, arcu tempus dapibus tempor, erat eros consequat felis, eget bibendum nunc dolor ac velit. Donec congue aliquet egestas. Suspendisse consectetur, ipsum a commodo sodales, libero quam mollis diam, ut scelerisque felis mauris eget libero.", "tags": ["test", "mock", "manual", "length", "truncate"] },
+    { "id": 2, "title": "json-server 2", "createdBy": 1, "createdAt": "18/02/2017 00:10:04", "content": "content served by json-server 2", "tags": ["test", "mock", "manual","short"]}
+  ]
+}

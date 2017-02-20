@@ -5,10 +5,11 @@
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently \"ng serve\" \"npm run json\" ",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "json": "json-server --watch db.json -p 3500"
   },
   "private": true,
   "dependencies": {
@@ -22,7 +23,9 @@
     "@angular/router": "^3.4.0",
     "core-js": "^2.4.1",
     "rxjs": "^5.1.0",
-    "zone.js": "^0.7.6"
+    "zone.js": "^0.7.6",
+    "bootstrap": "4.0.0-alpha.6",
+    "jquery": "3.1.1"
   },
   "devDependencies": {
     "@angular/cli": "1.0.0-beta.32.3",
@@ -41,6 +44,8 @@
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.4.2",
-    "typescript": "~2.0.0"
+    "typescript": "~2.0.0",
+    "json-server": "0.9.5",
+    "concurrently": "^3.2.0"
   }
 }
