@@ -1,5 +1,11 @@
 <div class="row">
   <div class="container mt-3">
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" [(ngModel)]="showDeleted" />
+        Show Deleted
+      </label>
+    </div>
     <table class="table table-striped table-bordered">
       <thead>
         <th>Title</th>
@@ -16,7 +22,7 @@
           <td>{{a.deletedAt}}</td>
           <td>
             <button class="btn btn-secondary">Edit</button>
-            <button class="btn btn-danger" [routerLink]="['/admin','articles',a.id,'delete']">Delete</button>
+            <button class="btn btn-danger" *ngIf="a.deletedAt == null || a.deletedAt == ''" [routerLink]="['/admin','articles',a.id,'delete']">Delete</button>
           </td>
         </tr>
       </tbody>

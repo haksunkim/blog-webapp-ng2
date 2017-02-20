@@ -7,9 +7,17 @@ import { ArticleRepository } from "../../model/article.repository";
   templateUrl: "articleList.component.html"
 })
 export class ArticleListComponent {
+  showDeleted = false;
+
   constructor(private articleRepository: ArticleRepository) {}
 
   getArticles() : Article[] {
-    return this.articleRepository.getArticles();
+    let articles = [];
+    if (this.showDeleted) {
+      articles = this.articleRepository.getArticles();
+    } else {
+      articles = this.articleRepository.getArticles().filter(a => a.deletedAt == null || a.deletedAt == "");
+    }
+    return articles;
   }
 }

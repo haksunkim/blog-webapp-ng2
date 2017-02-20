@@ -6,9 +6,10 @@ import { AdminComponent } from "./admin.component";
 import { MessageModule } from "../messages/message.module";
 import { DeleteArticleGuard } from "../guard/deleteArticle.guard";
 import { ArticleDeleteComponent } from "./article/articleDelete.component";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
-  imports: [ BrowserModule, RouterModule, MessageModule ],
+  imports: [ BrowserModule, RouterModule, MessageModule, FormsModule ],
   declarations: [ AdminComponent, ArticleListComponent, ArticleDeleteComponent ],
   providers: [ DeleteArticleGuard ],
   exports: [ AdminComponent, ArticleListComponent ]
