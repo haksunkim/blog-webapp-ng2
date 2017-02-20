@@ -38,7 +38,7 @@ export class ArticleRepository {
     return this.tags;
   }
 
-  svaeArticle(article: Article) {
+  saveArticle(article: Article) {
     if (article.id == null || article.id == 0) {
       this.datasource.saveArticle(article).subscribe(a => this.articles.push(a));
     } else {
@@ -46,5 +46,14 @@ export class ArticleRepository {
         this.articles.splice(this.articles.findIndex(a => a.id == article.id), 1, article);
       });
     }
+  }
+
+  deleteArticle(id: number) {
+    let article: Article = this.articles.find(a => a.id == id);
+    let today = new Date();
+    article.deletedAt = today.toISOString();
+    article.deletedBy = 0;
+
+    this.saveArticle(article);
   }
 }

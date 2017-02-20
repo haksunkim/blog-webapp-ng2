@@ -5,6 +5,7 @@
         <th>Title</th>
         <th>Created At</th>
         <th>Modified At</th>
+        <th>Deleted At</th>
         <th></th>
       </thead>
       <tbody>
@@ -12,9 +13,10 @@
           <td>{{a.title}}</td>
           <td>{{a.createdAt}}</td>
           <td>{{a.modifiedAt}}</td>
+          <td>{{a.deletedAt}}</td>
           <td>
             <button class="btn btn-secondary">Edit</button>
-            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-danger" [routerLink]="['/admin','articles',a.id,'delete']">Delete</button>
           </td>
         </tr>
       </tbody>
