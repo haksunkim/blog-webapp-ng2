@@ -7,15 +7,21 @@ import { ArticleListComponent } from "./admin/article/articleList.component";
 import { DeleteArticleGuard } from "./guard/deleteArticle.guard";
 import { ArticleDeleteComponent } from "./admin/article/articleDelete.component";
 import { ArticleEditComponent } from "./admin/article/articleEdit.component";
+import { AuthGuard } from "./guard/auth.guard";
+import { AuthComponent } from "./admin/auth/auth.component";
 
 const routes: Routes = [
     { path: "blog/tag/:tag", component: BlogComponent, resolve: { model: ArticleResolver }},
     { path: "blog/:id", component: ArticleDetailsComponent, resolve: { model: ArticleResolver } },
     { path: "blog", component: BlogComponent },
-    { path: "admin/articles/:id/delete", component: ArticleDeleteComponent, resolve: { model: ArticleResolver }, canActivate: [ DeleteArticleGuard] },
-    { path: "admin/articles/:id/:mode", component: ArticleEditComponent, resolve: { model: ArticleResolver } },
-    { path: "admin/articles", component: ArticleListComponent, resolve: { model: ArticleResolver } },
-    { path: "admin", redirectTo: "admin/articles"},
+    { path: "admin/auth", component: AuthComponent },
+    { path: "admin", children: [
+      { path: "articles/:id/delete", component: ArticleDeleteComponent, resolve: { model: ArticleResolver }, canActivate: [ DeleteArticleGuard, AuthGuard] },
+      { path: "articles/:id/:mode", component: ArticleEditComponent, resolve: { model: ArticleResolver }, canActivate: [ AuthGuard ] },
+      { path: "articles/:mode", component: ArticleEditComponent, resolve: { model: ArticleResolver }, canActivate: [ AuthGuard ] },
+      { path: "articles", component: ArticleListComponent, resolve: { model: ArticleResolver }, canActivate: [ AuthGuard ] },
+      { path: "**", redirectTo: "auth" }
+    ] },
     { path: "**", redirectTo: "blog" }
 ]
 

@@ -9,11 +9,14 @@ import { ArticleDeleteComponent } from "./article/articleDelete.component";
 import { FormsModule } from "@angular/forms";
 import { ArticleEditComponent } from "./article/articleEdit.component";
 import { CKEditorModule } from "ng2-ckeditor";
+import { AuthService } from "./auth/auth.service";
+import { AuthGuard } from "../guard/auth.guard";
+import { AuthComponent } from "./auth/auth.component";
 
 @NgModule({
   imports: [ BrowserModule, RouterModule, MessageModule, FormsModule, CKEditorModule ],
-  declarations: [ AdminComponent, ArticleListComponent, ArticleDeleteComponent, ArticleEditComponent ],
-  providers: [ DeleteArticleGuard ],
+  declarations: [ AdminComponent, ArticleListComponent, ArticleDeleteComponent, ArticleEditComponent, AuthComponent ],
+  providers: [ DeleteArticleGuard, AuthService, AuthGuard ],
   exports: [ AdminComponent, ArticleListComponent ]
 })
 export class AdminModule {}

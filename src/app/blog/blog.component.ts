@@ -16,6 +16,6 @@ export class BlogComponent {
   }
 
   getArticles() : Article[] {
-    return this.articleRepository.getArticles(this.selectedTag);
+    return this.articleRepository.getArticles(this.selectedTag).filter(a => a.deletedAt == null || a.deletedAt == "");
   }
 }

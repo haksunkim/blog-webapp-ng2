@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Http, RequestMethod, Request } from "@angular/http";
 import { Observable } from "rxjs/Observable";
+import { Subject } from "rxjs/Subject";
 import { Article } from "./article.model";
 import "rxjs/add/operator/map";
 
@@ -10,9 +11,19 @@ const PORT: number = 3500;
 @Injectable()
 export class RestDataSource {
   baseUrl: string;
+  auth_token: string;
 
   constructor (private http: Http) {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+  }
+
+  authenitcate(username: string, password: string): Observable<boolean> {
+    this.auth_token = "testing";
+
+    return Observable.create(observer => {
+      observer.next(true);
+      observer.complete();
+    });
   }
 
   getArticles() : Observable<Article[]> {

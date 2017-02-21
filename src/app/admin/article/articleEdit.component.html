@@ -10,6 +10,10 @@
         <label for="content">Content</label>
         <ckeditor name="content" [(ngModel)]="article.content" debounce="500"></ckeditor>
       </div>
+      <div class="form-group">
+        <label for="tags">Tags</label>
+        <input type="text" class="form-control" name="tags_string" [(ngModel)]="tags_string" (change)="isTagChanged=true" />
+      </div>
       <button type="submit" class="btn btn-primary" [class.btn-warning]="editing">{{editing ? "Save" : "Create"}}</button>
       <button type="reset" class="btn btn-secondary" routerLink="/admin/articles">Cancel</button>
     </form>

@@ -12,8 +12,8 @@
         <a class="navbar-brand" href="#">&nbsp;</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#" routerLink="">{{navHome}}</a>
-            <a class="nav-item nav-link" href="#" routerLink="/admin">{{navAdmin}}</a>
+            <a class="nav-item nav-link" href="#" routerLink="/blog" [routerLinkActive]="['active']">{{navHome}}</a>
+            <a class="nav-item nav-link" href="#" routerLink="/admin/articles" [routerLinkActive]="['active']">{{navAdmin}}</a>
           </div>
         </div>
       </nav>

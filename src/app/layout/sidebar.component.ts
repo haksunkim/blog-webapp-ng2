@@ -12,4 +12,8 @@ export class SidebarComponent {
   constructor(private articleRepository: ArticleRepository) {
     this.tags = articleRepository.getTags();
   }
+
+  getTags() {
+    return this.articleRepository.getTags();    
+  }
 }
