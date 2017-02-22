@@ -9,6 +9,6 @@ export class Article {
     public deletedAt?: string,
     public deletedBy?: number,
     public content?: string,
-    public tags?: string[]
+    public tags?: string
   ) {}
 }

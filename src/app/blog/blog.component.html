@@ -6,7 +6,7 @@
         <p><small>posted on {{a.createdAt}} by {{a.createdBy}}</small></p>
         <p [innerHtml]="a.content | truncate:300"></p>
         <p>
-          Tags: <span *ngFor="let t of a.tags; let i = index" style="color:blue;">
+          Tags: <span *ngFor="let t of a.tags.split(','); let i = index" style="color:blue;">
             {{i != 0 ? ", " : "" }}<a  [routerLink]="['/blog','tag',t]">{{t}}</a>
           </span>
         </p>

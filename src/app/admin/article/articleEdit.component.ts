@@ -19,7 +19,7 @@ export class ArticleEditComponent {
     this.tags_string = "";
     if (this.editing) {
       Object.assign(this.article = articleRepository.getArticle(route.snapshot.params["id"]));
-      this.tags_string = this.article.tags.join(",");
+      this.tags_string = this.article.tags;
     }
   }
 
@@ -34,7 +34,7 @@ export class ArticleEditComponent {
     }
     if (this.isTagChanged || !this.editing) {
       this.tags_string.replace(" ,",",");
-      this.article.tags = this.tags_string.split(",");
+      this.article.tags = this.tags_string;
     }
     this.articleRepository.saveArticle(this.article);
     this.router.navigateByUrl("/admin/articles");
