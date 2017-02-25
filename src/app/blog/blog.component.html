@@ -3,7 +3,7 @@
     <div class="mt-3">
       <div class="container" *ngFor="let a of getArticles()">
         <h3><a [routerLink]="['/blog', a.id]" style="cursor:pointer;color:black;">{{a.title | uppercase}}</a></h3>
-        <p><small>posted on {{a.createdAt}} by {{a.createdBy}}</small></p>
+        <p><small>posted on {{a.createdAt | date:"dd/MM/yyyy 'at' hh:mma"}} by {{a.createdBy}}</small></p>
         <p [innerHtml]="a.content | truncate:300"></p>
         <p>
           Tags: <span *ngFor="let t of a.tags.split(','); let i = index" style="color:blue;">

@@ -8,7 +8,7 @@ export class ArticleRepository {
 
   constructor(private datasource: RestDataSource) {
     datasource.getArticles().subscribe(data => {
-      this.articles = data["_embedded"]["articles"];
+      this.articles = data;
     });
     console.log(this.articles);
   }
@@ -30,7 +30,7 @@ export class ArticleRepository {
     let tags: string[] = [];
 
     for (let article of this.articles) {
-      for (let tag of article.tags) {
+      for (let tag of article.tags.split(",")) {
         fullTags.push(tag);
       }
     }

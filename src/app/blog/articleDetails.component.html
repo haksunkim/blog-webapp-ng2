@@ -3,7 +3,7 @@
     <div class="mt-3">
       <div class="container">
         <h3>{{article.title | uppercase}}</h3>
-        <p><small>posted on {{article.createdAt}} by {{article.createdBy}}</small></p>
+        <p><small>posted on {{article.createdAt | date:"dd/MM/yyyy 'at' hh:mma"}} by {{article.createdBy}}</small></p>
         <p [innerHtml]="article.content"></p>
       </div>
     </div>

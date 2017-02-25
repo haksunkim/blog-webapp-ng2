@@ -8,12 +8,11 @@ import { ArticleRepository } from "../model/article.repository";
   templateUrl: "sidebar.component.html"
 })
 export class SidebarComponent {
-  tags: string[] = [];
   constructor(private articleRepository: ArticleRepository) {
-    this.tags = articleRepository.getTags();
+
   }
 
   getTags() {
-    return this.articleRepository.getTags();    
+    return this.articleRepository.getTags();
   }
 }
