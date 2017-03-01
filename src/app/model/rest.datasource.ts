@@ -18,11 +18,14 @@ export class RestDataSource {
   }
 
   authenitcate(username: string, password: string): Observable<boolean> {
-    this.auth_token = "testing";
-
-    return Observable.create(observer => {
-      observer.next(true);
-      observer.complete();
+    return this.http.request(new Request({
+      method: RequestMethod.Post,
+      url: this.baseUrl + "login",
+      body: `{ "username": "${username}", "password": "${password}" }`
+    })).map(response => {
+      let r = response.json();
+      this.auth_token = r.success ? r.token : null;
+      return r.success;
     });
   }
 
@@ -36,6 +39,9 @@ export class RestDataSource {
       url: this.baseUrl + url,
       body: body
     });
+    if (auth && this.auth_token != null) {
+      request.headers.set("Authorization", `Bearer ${this.auth_token}`);
+    }
     return this.http.request(request).map(response => response.json());
   }
 

@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService} from "./auth.service";
+import "rxjs/add/operator/catch";
 
 @Component({
   moduleId: module.id,
@@ -19,9 +20,14 @@ export class AuthComponent {
       this.auth.authenticate(this.username, this.password).subscribe(response => {
         if (response) {
           this.router.navigateByUrl("/admin/articles");
+        } else {
+          this.errorMessage = "Authentication Failed";
         }
-        this.errorMessage = "Authentication Failed";
-      })
+      }, (err) => {
+        if (err.status === 401) {
+          this.errorMessage = "Authentication Failed";
+        }
+      });
     } else {
       this.errorMessage = "Form Data Invalid";
     }
