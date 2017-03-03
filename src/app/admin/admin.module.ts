@@ -12,10 +12,11 @@ import { CKEditorModule } from "ng2-ckeditor";
 import { AuthService } from "./auth/auth.service";
 import { AuthGuard } from "../guard/auth.guard";
 import { AuthComponent } from "./auth/auth.component";
+import { AdminSidebarComponent } from "../layout/adminSidebar.component";
 
 @NgModule({
   imports: [ BrowserModule, RouterModule, MessageModule, FormsModule, CKEditorModule ],
-  declarations: [ AdminComponent, ArticleListComponent, ArticleDeleteComponent, ArticleEditComponent, AuthComponent ],
+  declarations: [ AdminComponent, ArticleListComponent, ArticleDeleteComponent, ArticleEditComponent, AuthComponent, AdminSidebarComponent ],
   providers: [ DeleteArticleGuard, AuthService, AuthGuard ],
   exports: [ AdminComponent, ArticleListComponent ]
 })
