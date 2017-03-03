@@ -21,9 +21,9 @@
       <tbody>
         <tr *ngFor="let a of getArticles()">
           <td><a [routerLink]="['/blog',a.id]">{{a.title}}</a></td>
-          <td>{{a.createdAt}}</td>
-          <td>{{a.modifiedAt}}</td>
-          <td>{{a.deletedAt}}</td>
+          <td>{{a.createdAt | date:"dd/MM/yyyy 'at' HH:mma"}}</td>
+          <td>{{a.modifiedAt | date:"dd/MM/yyyy 'at' HH:mma"}}</td>
+          <td>{{a.deletedAt | date:"dd/MM/yyyy 'at' HH:mma"}}</td>
           <td>
             <button class="btn btn-secondary" [routerLink]="['/admin','articles',a.id,'edit']">Edit</button>
             <button class="btn btn-danger" *ngIf="a.deletedAt == null || a.deletedAt == ''" [routerLink]="['/admin','articles',a.id,'delete']">Delete</button>
