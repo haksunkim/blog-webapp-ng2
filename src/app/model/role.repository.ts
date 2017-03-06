@@ -7,12 +7,12 @@ export class RoleRepository {
   private roles: Role[] = [];
 
   constructor(private datasource: RestDataSource) {
-    return this.datasource.getRoles().subscribe(data => {
+    this.datasource.getRoles().subscribe(data => {
       this.roles = data;
-    })
+    });
   }
 
   public getRole(name: string) : Role {
-    return this.datasource.getRole(name).subscribe(data => {return data});
+    return this.roles.find(r => r.name == name);
   }
 }
