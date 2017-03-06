@@ -10,7 +10,6 @@ export class ArticleRepository {
     datasource.getArticles().subscribe(data => {
       this.articles = data;
     });
-    console.log(this.articles);
   }
 
   getArticles(tag: string = null) : Article[] {

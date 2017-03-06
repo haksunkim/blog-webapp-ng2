@@ -1,8 +1,10 @@
 import { Injectable } from "@angular/core";
-import { Http, RequestMethod, Request, Jsonp } from "@angular/http";
+import { Http, RequestMethod, Request, Jsonp, Headers, RequestOptions } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 import { Article } from "./article.model";
+import { User } from "./user.model";
+import { Role } from "./role.model";
 import "rxjs/add/operator/map";
 
 const PROTOCOL: string = "http";
@@ -33,7 +35,7 @@ export class RestDataSource {
     return this.sendRequest(RequestMethod.Get, "articles");
   }
 
-  private sendRequest(verb: RequestMethod, url: string, body?: Article, auth: boolean = false) : Observable<Article[] | Article> {
+  private sendRequest(verb: RequestMethod, url: string, body?: Article, auth: boolean = false) : Observable<Article[] | Article | User | User[] | Role | Role[]> {
     let request = new Request({
       method: verb,
       url: this.baseUrl + url,
@@ -51,5 +53,13 @@ export class RestDataSource {
 
   updateArticle(article: Article) : Observable<Article> {
     return this.sendRequest(RequestMethod.Put, `articles/${article.id}`, article, true);
+  }
+
+  register(user: User) : Observable<User> {
+    return this.sendRequest(RequestMethod.Post, "register", user);
+  }
+
+  getRoles() : Observable<Role[]> {
+    return this.sendRequest(RequestMethod.Get, `roles`);
   }
 }
