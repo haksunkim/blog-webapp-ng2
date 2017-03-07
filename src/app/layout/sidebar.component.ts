@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
+import { Tag } from "../model/tag.model";
 import { Article } from "../model/article.model";
-import { ArticleRepository } from "../model/article.repository";
+import { TagRepository } from "../model/tag.repository";
 
 @Component({
   selector: "app-sidebar",
@@ -8,11 +9,11 @@ import { ArticleRepository } from "../model/article.repository";
   templateUrl: "sidebar.component.html"
 })
 export class SidebarComponent {
-  constructor(private articleRepository: ArticleRepository) {
+  public tags: Tag[] = new Array<Tag>();
 
-  }
-
-  getTags() {
-    return this.articleRepository.getTags();
+  constructor(private tagRepository: TagRepository) {
+    tagRepository.getTags().subscribe(data => {
+      this.tags = data;
+    });
   }
 }

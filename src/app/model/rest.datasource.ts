@@ -5,6 +5,7 @@ import { Subject } from "rxjs/Subject";
 import { Article } from "./article.model";
 import { User } from "./user.model";
 import { Role } from "./role.model";
+import { Tag } from "./tag.model";
 import "rxjs/add/operator/map";
 
 const PROTOCOL: string = "http";
@@ -14,6 +15,7 @@ const PORT: number = 3500;
 export class RestDataSource {
   baseUrl: string;
   auth_token: string;
+  currentUser: string;
 
   constructor (private http: Http) {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
@@ -27,6 +29,7 @@ export class RestDataSource {
     })).map(response => {
       let r = response.json();
       this.auth_token = r.success ? r.token : null;
+      this.currentUser = r.success ? r.currentUser : null;
       return r.success;
     });
   }
@@ -35,14 +38,14 @@ export class RestDataSource {
     return this.sendRequest(RequestMethod.Get, "articles");
   }
 
-  private sendRequest(verb: RequestMethod, url: string, body?: Article, auth: boolean = false) : Observable<Article[] | Article | User | User[] | Role | Role[]> {
+  private sendRequest(verb: RequestMethod, url: string, body?: Article, auth: boolean = false) : Observable<Article[] | Article | User | User[] | Role | Role[] | Tag | Tag[]> {
     let request = new Request({
       method: verb,
       url: this.baseUrl + url,
       body: body
     });
     if (auth && this.auth_token != null) {
-      request.headers.set("Authorization", `Bearer ${this.auth_token}`);
+      request.headers.set("Authorization", `${this.auth_token}`);
     }
     return this.http.request(request).map(response => response.json());
   }
@@ -52,7 +55,7 @@ export class RestDataSource {
   }
 
   updateArticle(article: Article) : Observable<Article> {
-    return this.sendRequest(RequestMethod.Put, `articles/${article.id}`, article, true);
+    return this.sendRequest(RequestMethod.Put, `articles`, article, true);
   }
 
   register(user: User) : Observable<User> {
@@ -61,5 +64,13 @@ export class RestDataSource {
 
   getRoles() : Observable<Role[]> {
     return this.sendRequest(RequestMethod.Get, `roles`);
+  }
+
+  getUsers() : Observable<User[]> {
+    return this.sendRequest(RequestMethod.Get, 'users');
+  }
+
+  getTags() : Observable<Tag[]> {
+    return this.sendRequest(RequestMethod.Get, "tags");
   }
 }

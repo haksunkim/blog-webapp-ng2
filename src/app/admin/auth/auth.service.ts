@@ -5,6 +5,7 @@ import { User } from "../../model/user.model";
 
 @Injectable()
 export class AuthService {
+  public currentUser: User;
 
   constructor(private datasource: RestDataSource) {}
 

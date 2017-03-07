@@ -19,13 +19,13 @@
     </div>
   </div>
 </div>
-<div class="card mt-3">
+<div class="card mt-3 mb-3">
   <div class="card-header bg-inverse">
     <h4 style="color:#ffffff;">Tags</h4>
   </div>
   <div class="card-block">
-    <span *ngFor="let tag of getTags()">
-      <a [routerLink]="['/blog','tag',tag]">{{tag}}</a>
+    <span *ngFor="let tag of (tags)">
+      <a [routerLink]="['/blog','tag',(tag.name == null) ? '' : tag.name]">{{tag.name}}</a>
     </span>
   </div>
 </div>

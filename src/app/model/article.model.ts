@@ -1,3 +1,5 @@
+import { Tag } from "./tag.model";
+
 export class Article {
   constructor(
     public id?: number,
@@ -9,6 +11,6 @@ export class Article {
     public deletedAt?: string,
     public deletedBy?: number,
     public content?: string,
-    public tags?: string
+    public tags?: Tag[]
   ) {}
 }

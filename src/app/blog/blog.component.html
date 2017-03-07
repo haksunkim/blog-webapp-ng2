@@ -6,8 +6,8 @@
         <p><small>posted on {{a.createdAt | date:"dd/MM/yyyy 'at' hh:mma"}} by {{a.createdBy}}</small></p>
         <p [innerHtml]="a.content | truncate:300"></p>
         <p>
-          Tags: <span *ngFor="let t of a.tags.split(','); let i = index" style="color:blue;">
-            {{i != 0 ? ", " : "" }}<a  [routerLink]="['/blog','tag',t]">{{t}}</a>
+          Tags: <span *ngFor="let t of a.tags; let i = index" style="color:blue;">
+            {{i != 0 ? ", " : "" }}<a  [routerLink]="['/blog','tag',t.name == null ? '' : t.name]">{{t.name}}</a>
           </span>
         </p>
         <hr />

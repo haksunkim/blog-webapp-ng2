@@ -1,12 +1,14 @@
 import { Injectable } from "@angular/core";
 import { Article } from "./article.model";
+import { Tag } from "./tag.model";
+import { TagRepository } from "./tag.repository";
 import { RestDataSource } from "./rest.datasource";
 
 @Injectable()
 export class ArticleRepository {
-  private articles: Article[] = [];
+  private articles: Article[] = new Array<Article>();
 
-  constructor(private datasource: RestDataSource) {
+  constructor(private datasource: RestDataSource, private tagRepository: TagRepository) {
     datasource.getArticles().subscribe(data => {
       this.articles = data;
     });
@@ -14,32 +16,23 @@ export class ArticleRepository {
 
   getArticles(tag: string = null) : Article[] {
     if (this.articles instanceof Array) {
-      return this.articles.filter(a => tag == null || a.tags.split(",").indexOf(tag) != -1);
+      return this.articles.filter(a => tag == null || this.hasTag(a.tags, tag));
     } else {
       return [];
     }
   }
 
-  getArticle(id: number) : Article {
-    return this.articles.find(a => a.id == id);
+  private hasTag(tags: Tag[], tagname: string) : boolean {
+    for (let tag of tags) {
+      if (tag["name"] == tagname) {
+        return true;
+      }
+    }
+    return false;
   }
 
-  getTags() : string[] {
-    let fullTags: string[] = [];
-    let tags: string[] = [];
-
-    for (let article of this.articles) {
-      for (let tag of article.tags.split(",")) {
-        fullTags.push(tag);
-      }
-    }
-
-    for (let tag of fullTags) {
-      if (tags.indexOf(tag) == -1) {
-        tags.push(tag);
-      }
-    }
-    return tags;
+  getArticle(id: number) : Article {
+    return this.articles.find(a => a.id == id);
   }
 
   saveArticle(article: Article) {
