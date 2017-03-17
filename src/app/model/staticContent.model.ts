@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class StaticContent {
-  blogTitle: string = "Haksun Kim";
+  blogTitle: string = 'Haksun Kim';
   navbar = {
-    home: "Home",
-    admin: "Admin"
+    home: 'Home',
+    admin: 'Admin'
   };
   sidebar = {
 
