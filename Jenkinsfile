@@ -1,6 +1,7 @@
 node{
     stage 'Build'
-    sh "ng build --prod"
+    sh 'npm install'
+    sh 'ng build --prod'
 }
 
 node{
